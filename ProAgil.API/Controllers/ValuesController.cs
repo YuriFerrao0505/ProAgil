@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProAgil.API.Data;
 using ProAgil.API.Model;
+using Microsoft.AspNetCore.Http;
 
 namespace ProAgil.API.Controllers
 {
@@ -21,17 +22,31 @@ namespace ProAgil.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-           
-            var results = await _context.Eventos.ToListAsync();
-            return Ok(results);       
+           try
+           {
+               var results = await _context.Eventos.ToListAsync();
+               return Ok(results); 
+           }
+           catch (System.Exception)
+           {
+               return this.StatusCode(StatusCodes.Status500InternalServerError,"Banco de Dados Falhou");
+           }
+                  
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<ActionResult> Get(int id)
         {
-            var results = await _context.Eventos.FirstOrDefaultAsync(x=>x.EventoId == id);;
-            return Ok(results); 
+             try
+           {
+               var results = await _context.Eventos.FirstOrDefaultAsync(x => x.EventoId==id);
+               return Ok(results); 
+           }
+           catch (System.Exception)
+           {
+               return this.StatusCode(StatusCodes.Status500InternalServerError,"Banco de Dados Falhou");
+           }
         }
 
         // POST api/values
