@@ -7,25 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./eventos.component.css']
 })
 export class EventosComponent implements OnInit {
-
- 
+  
   eventos: any;
-  /*{
-    EventoId: 1, 
-    Tema: 'Angular', 
-    Local: 'Belo Horizonte'
-  },
-  {
-    EventoId: 2, 
-    Tema: '.NET Core', 
-    Local: 'São Paulo'
-  },
-  {
-    EventoId: 3, 
-    Tema: 'Angular e .NET Core', 
-    Local: 'Rio de Janeiro'
-  }
- ];*/
 
   constructor(private http: HttpClient) { }
 
@@ -34,9 +17,11 @@ export class EventosComponent implements OnInit {
   }
 
   getEventos(){
-    this.http.get('http://localhost:5000/api/values').subscribe(response =>
+    this.http.get('http://localhost:5000/site/values').subscribe(response =>
     {
       this.eventos = response;
+      console.log(response);
+
     }, error =>
     {
       console.log(error)
