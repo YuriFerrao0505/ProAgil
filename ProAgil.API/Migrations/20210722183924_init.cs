@@ -12,6 +12,7 @@ namespace ProAgil.API.Migrations
                 {
                     EventoId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    ImagemUrl = table.Column<string>(nullable: true),
                     Local = table.Column<string>(nullable: true),
                     DataEvento = table.Column<string>(nullable: true),
                     Tema = table.Column<string>(nullable: true),

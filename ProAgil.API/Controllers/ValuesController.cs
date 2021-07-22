@@ -38,7 +38,7 @@ namespace ProAgil.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(int id)
         {
-             try
+            try
            {
                var results = await _context.Eventos.FirstOrDefaultAsync(x => x.EventoId==id);
                return Ok(results); 
@@ -47,6 +47,7 @@ namespace ProAgil.API.Controllers
            {
                return this.StatusCode(StatusCodes.Status500InternalServerError,"Banco de Dados Falhou");
            }
+                  
         }
 
         // POST api/values
